@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		64612D3A2A4F619800F1BB63 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64612D392A4F619800F1BB63 /* RegistrationView.swift */; };
 		64B9BE022A4AD9B70023B6D7 /* MessengerCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9BE012A4AD9B70023B6D7 /* MessengerCloneApp.swift */; };
 		64B9BE042A4AD9B70023B6D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9BE032A4AD9B70023B6D7 /* ContentView.swift */; };
 		64B9BE062A4AD9B80023B6D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B9BE052A4AD9B80023B6D7 /* Assets.xcassets */; };
 		64B9BE092A4AD9B80023B6D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B9BE082A4AD9B80023B6D7 /* Preview Assets.xcassets */; };
+		64B9BE1A2A4ADB580023B6D7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9BE192A4ADB580023B6D7 /* LoginView.swift */; };
+		64B9BE202A4ADD820023B6D7 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9BE1F2A4ADD820023B6D7 /* TextFieldModifier.swift */; };
+		64B9BE222A4ADF3A0023B6D7 /* CustomButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9BE212A4ADF3A0023B6D7 /* CustomButtonModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		64612D392A4F619800F1BB63 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		64B9BDFE2A4AD9B70023B6D7 /* MessengerClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B9BE012A4AD9B70023B6D7 /* MessengerCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerCloneApp.swift; sourceTree = "<group>"; };
 		64B9BE032A4AD9B70023B6D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		64B9BE052A4AD9B80023B6D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64B9BE082A4AD9B80023B6D7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		64B9BE192A4ADB580023B6D7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		64B9BE1F2A4ADD820023B6D7 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
+		64B9BE212A4ADF3A0023B6D7 /* CustomButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +61,11 @@
 			children = (
 				64B9BE012A4AD9B70023B6D7 /* MessengerCloneApp.swift */,
 				64B9BE032A4AD9B70023B6D7 /* ContentView.swift */,
+				64B9BE142A4ADB210023B6D7 /* Core */,
+				64B9BE132A4ADB130023B6D7 /* Service */,
+				64B9BE1B2A4ADD460023B6D7 /* Components */,
+				64B9BE122A4ADAEA0023B6D7 /* Extensions */,
+				64B9BE112A4ADAE30023B6D7 /* Data Models */,
 				64B9BE052A4AD9B80023B6D7 /* Assets.xcassets */,
 				64B9BE072A4AD9B80023B6D7 /* Preview Content */,
 			);
@@ -65,6 +78,93 @@
 				64B9BE082A4AD9B80023B6D7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		64B9BE112A4ADAE30023B6D7 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		64B9BE122A4ADAEA0023B6D7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		64B9BE132A4ADB130023B6D7 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		64B9BE142A4ADB210023B6D7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				64B9BE152A4ADB300023B6D7 /* Authentication */,
+				64B9BE162A4ADB360023B6D7 /* Root */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		64B9BE152A4ADB300023B6D7 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				64B9BE172A4ADB430023B6D7 /* View */,
+				64B9BE182A4ADB490023B6D7 /* View Model */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		64B9BE162A4ADB360023B6D7 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		64B9BE172A4ADB430023B6D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				64B9BE192A4ADB580023B6D7 /* LoginView.swift */,
+				64612D392A4F619800F1BB63 /* RegistrationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		64B9BE182A4ADB490023B6D7 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		64B9BE1B2A4ADD460023B6D7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				64B9BE1E2A4ADD640023B6D7 /* Views */,
+				64B9BE1C2A4ADD500023B6D7 /* View Model */,
+				64B9BE1F2A4ADD820023B6D7 /* TextFieldModifier.swift */,
+				64B9BE212A4ADF3A0023B6D7 /* CustomButtonModifier.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		64B9BE1C2A4ADD500023B6D7 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
+		64B9BE1E2A4ADD640023B6D7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +237,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64B9BE1A2A4ADB580023B6D7 /* LoginView.swift in Sources */,
 				64B9BE042A4AD9B70023B6D7 /* ContentView.swift in Sources */,
+				64B9BE202A4ADD820023B6D7 /* TextFieldModifier.swift in Sources */,
+				64612D3A2A4F619800F1BB63 /* RegistrationView.swift in Sources */,
 				64B9BE022A4AD9B70023B6D7 /* MessengerCloneApp.swift in Sources */,
+				64B9BE222A4ADF3A0023B6D7 /* CustomButtonModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
