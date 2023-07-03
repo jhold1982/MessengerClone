@@ -10,18 +10,16 @@ import SwiftUI
 struct ContentView: View {
 	
 	// MARK: - PROPERTIES
-	
+	@State private var isLoginViewActive = true
 	
 	
 	// MARK: - BODY
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
+		if isLoginViewActive {
+			LoginView()
+		} else {
+			RegistrationView()
+		}
     }
 }
 
