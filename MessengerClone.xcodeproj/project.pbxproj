@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		64612D3A2A4F619800F1BB63 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64612D392A4F619800F1BB63 /* RegistrationView.swift */; };
+		6482C5B82A55D2A300031393 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482C5B72A55D2A300031393 /* ProfileView.swift */; };
+		6482C5BA2A5614F900031393 /* SettingsOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482C5B92A5614F900031393 /* SettingsOptionsViewModel.swift */; };
 		64B9BE022A4AD9B70023B6D7 /* MessengerCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9BE012A4AD9B70023B6D7 /* MessengerCloneApp.swift */; };
 		64B9BE042A4AD9B70023B6D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9BE032A4AD9B70023B6D7 /* ContentView.swift */; };
 		64B9BE062A4AD9B80023B6D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64B9BE052A4AD9B80023B6D7 /* Assets.xcassets */; };
@@ -18,10 +20,13 @@
 		64DC3F3B2A53291400FA6DA1 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F3A2A53291400FA6DA1 /* InboxView.swift */; };
 		64DC3F3E2A5329FC00FA6DA1 /* ActiveNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F3D2A5329FC00FA6DA1 /* ActiveNowView.swift */; };
 		64DC3F402A534A9900FA6DA1 /* InboxRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F3F2A534A9900FA6DA1 /* InboxRowView.swift */; };
+		64DC3F432A536D0C00FA6DA1 /* NewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F422A536D0C00FA6DA1 /* NewMessageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		64612D392A4F619800F1BB63 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		6482C5B72A55D2A300031393 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		6482C5B92A5614F900031393 /* SettingsOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOptionsViewModel.swift; sourceTree = "<group>"; };
 		64B9BDFE2A4AD9B70023B6D7 /* MessengerClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MessengerClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		64B9BE012A4AD9B70023B6D7 /* MessengerCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerCloneApp.swift; sourceTree = "<group>"; };
 		64B9BE032A4AD9B70023B6D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -33,6 +38,7 @@
 		64DC3F3A2A53291400FA6DA1 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
 		64DC3F3D2A5329FC00FA6DA1 /* ActiveNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveNowView.swift; sourceTree = "<group>"; };
 		64DC3F3F2A534A9900FA6DA1 /* InboxRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRowView.swift; sourceTree = "<group>"; };
+		64DC3F422A536D0C00FA6DA1 /* NewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +52,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6482C5B42A55D28100031393 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				6482C5B52A55D28C00031393 /* View */,
+				6482C5B62A55D29200031393 /* ViewModel */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		6482C5B52A55D28C00031393 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6482C5B72A55D2A300031393 /* ProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6482C5B62A55D29200031393 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6482C5B92A5614F900031393 /* SettingsOptionsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		64B9BDF52A4AD9B70023B6D7 = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +144,8 @@
 				64DC3F3C2A5329EC00FA6DA1 /* ActiveNow */,
 				64B9BE152A4ADB300023B6D7 /* Authentication */,
 				64DC3F392A53290000FA6DA1 /* Inbox */,
+				64DC3F412A536CF900FA6DA1 /* NewMessage */,
+				6482C5B42A55D28100031393 /* Profile */,
 				64B9BE162A4ADB360023B6D7 /* Root */,
 			);
 			path = Core;
@@ -192,6 +225,14 @@
 			path = ActiveNow;
 			sourceTree = "<group>";
 		};
+		64DC3F412A536CF900FA6DA1 /* NewMessage */ = {
+			isa = PBXGroup;
+			children = (
+				64DC3F422A536D0C00FA6DA1 /* NewMessageView.swift */,
+			);
+			path = NewMessage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -264,6 +305,7 @@
 			files = (
 				64B9BE1A2A4ADB580023B6D7 /* LoginView.swift in Sources */,
 				64DC3F3E2A5329FC00FA6DA1 /* ActiveNowView.swift in Sources */,
+				6482C5BA2A5614F900031393 /* SettingsOptionsViewModel.swift in Sources */,
 				64B9BE042A4AD9B70023B6D7 /* ContentView.swift in Sources */,
 				64B9BE202A4ADD820023B6D7 /* TextFieldModifier.swift in Sources */,
 				64DC3F402A534A9900FA6DA1 /* InboxRowView.swift in Sources */,
@@ -271,6 +313,8 @@
 				64612D3A2A4F619800F1BB63 /* RegistrationView.swift in Sources */,
 				64B9BE022A4AD9B70023B6D7 /* MessengerCloneApp.swift in Sources */,
 				64B9BE222A4ADF3A0023B6D7 /* CustomButtonModifier.swift in Sources */,
+				6482C5B82A55D2A300031393 /* ProfileView.swift in Sources */,
+				64DC3F432A536D0C00FA6DA1 /* NewMessageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
