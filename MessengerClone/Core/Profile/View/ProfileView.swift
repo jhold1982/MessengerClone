@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ProfileView: View {
 	
 	// MARK: - PROPERTIES
-	
-	
+	@StateObject var viewModel = ProfileViewModel()
+	let user: User
 	
 	// MARK: - BODY
     var body: some View {
@@ -19,12 +20,19 @@ struct ProfileView: View {
 			
 			// MARK: - HEADER
 			VStack {
-				Image(systemName: "person.circle.fill")
-					.resizable()
-					.frame(width: 80, height: 80)
-					.foregroundColor(Color(.systemGray4))
+				PhotosPicker(selection: $viewModel.selectedItem) {
+					if let profileImage = viewModel.profileImage {
+						profileImage
+							.resizable()
+							.scaledToFill()
+							.frame(width: 80, height: 80)
+							.clipShape(Circle())
+					} else {
+						CircularProfileImageView(user: user, size: .xLarge)
+					}
+				}
 				
-				Text("firstName")
+				Text(user.fullName)
 					.font(.title2)
 					.fontWeight(.semibold)
 			} //: END OF INNER VSTACK
@@ -46,7 +54,7 @@ struct ProfileView: View {
 				
 				Section {
 					Button("Log Out") {
-						//
+						AuthService.shared.signOut()
 					}
 					Button("Delete Account") {
 						//
@@ -65,6 +73,6 @@ struct ProfileView: View {
 // MARK: - PREVIEWS
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView()
+		ProfileView(user: User.mockUser)
     }
 }

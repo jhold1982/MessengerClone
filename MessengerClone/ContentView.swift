@@ -10,15 +10,17 @@ import SwiftUI
 struct ContentView: View {
 	
 	// MARK: - PROPERTIES
-	@State private var isLoginViewActive = true
+	@StateObject var viewModel = ContentViewModel()
 	
 	
 	// MARK: - BODY
     var body: some View {
-		if isLoginViewActive {
-			LoginView()
-		} else {
-			RegistrationView()
+		Group {
+			if viewModel.userSession != nil {
+				InboxView()
+			} else {
+				LoginView()
+			}
 		}
     }
 }

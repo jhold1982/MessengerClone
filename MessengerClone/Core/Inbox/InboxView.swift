@@ -11,7 +11,7 @@ struct InboxView: View {
 	
 	// MARK: - PROPERTIES
 	@State private var showNewMessageView = false
-	
+	@State private var user = User.mockUser
 	
 	// MARK: - BODY
     var body: some View {
@@ -26,14 +26,19 @@ struct InboxView: View {
 				} //: END OF LIST
 				.listStyle(.plain)
 				.frame(height: UIScreen.main.bounds.height - 120)
-			}
+			} //: END OF SCROLLVIEW
+			.navigationDestination(for: User.self, destination: { user in
+				ProfileView(user: user)
+			})
 			.fullScreenCover(isPresented: $showNewMessageView, content: {
 				NewMessageView()
 			})
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
 					HStack {
-						Image(systemName: "person.circle.fill")
+						NavigationLink(value: user) {
+							CircularProfileImageView(user: user, size: .xSmall)
+						}
 						Text("Chats")
 							.font(.title)
 							.fontWeight(.semibold)
@@ -50,8 +55,8 @@ struct InboxView: View {
 					}
 				}
 			}
-		}
-    }
+		} //: END OF NAVIGATION STACK
+    } //: END OF VIEW BODY
 }
 
 // MARK: - PREVIEWS

@@ -10,10 +10,7 @@ import SwiftUI
 struct RegistrationView: View {
 	
 	// MARK: - PROPERTIES
-	@State private var email = ""
-	@State private var password = ""
-	@State private var fullName = ""
-	
+	@StateObject var viewModel = RegistrationViewModel()
 	@Environment(\.dismiss) var dismiss
 	
 	// MARK: - BODY
@@ -30,22 +27,22 @@ struct RegistrationView: View {
 			
 			// MARK: - CENTER
 			VStack {
-				TextField("Email", text: $email)
+				TextField("Email", text: $viewModel.email)
 					.textInputAutocapitalization(.never)
 					.modifier(TextFieldModifier())
 				
-				TextField("Full Name", text: $fullName)
+				TextField("Full Name", text: $viewModel.fullName)
 					.textInputAutocapitalization(.never)
 					.modifier(TextFieldModifier())
 				
-				SecureField("Password", text: $password)
+				SecureField("Password", text: $viewModel.password)
 					.textInputAutocapitalization(.never)
 					.modifier(TextFieldModifier())
 			} //: END OF CENTER VSTACK
 			
 			// LOG IN BUTTON
 			Button {
-				  print("DEBUG: Sign Up...")
+				Task { try await viewModel.createUser() }
 			  } label: {
 				  Text("Sign Up")
 					  .modifier(CustomButtonModifier())

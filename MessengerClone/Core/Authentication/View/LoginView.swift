@@ -10,8 +10,7 @@ import SwiftUI
 struct LoginView: View {
 	
 	// MARK: - PROPERTIES
-	@State private var email = ""
-	@State private var password = ""
+	@StateObject var viewModel = LoginViewModel()
 	
 	
 	// MARK: - BODY
@@ -29,11 +28,11 @@ struct LoginView: View {
 				
 				// MARK: - CENTER
 				VStack {
-					TextField("Email", text: $email)
+					TextField("Email", text: $viewModel.email)
 						.textInputAutocapitalization(.never)
 						.modifier(TextFieldModifier())
 					
-					SecureField("Password", text: $password)
+					SecureField("Password", text: $viewModel.password)
 						.textInputAutocapitalization(.never)
 						.modifier(TextFieldModifier())
 				} //: END OF CENTER VSTACK
@@ -52,7 +51,7 @@ struct LoginView: View {
 				
 				// LOG IN BUTTON
 				Button {
-					print("DEBUG: Log In...")
+					Task { try await viewModel.login() }
 				} label: {
 					Text("Login")
 						.modifier(CustomButtonModifier())
