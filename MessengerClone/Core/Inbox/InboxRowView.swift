@@ -9,14 +9,15 @@ import SwiftUI
 
 struct InboxRowView: View {
 	
-	// MARK: - PROPERTIES
-	
-	
-	
-	// MARK: - BODY
+	// MARK: - View Body
     var body: some View {
+		
 		HStack(alignment: .top, spacing: 12) {
-			CircularProfileImageView(user: User.mockUser, size: .medium)
+			
+			CircularProfileImageView(
+				user: User.mockUser,
+				size: .medium
+			)
 			
 			VStack(alignment: .leading, spacing: 4) {
 				Text("firstName")
@@ -28,23 +29,20 @@ struct InboxRowView: View {
 					.foregroundColor(.gray)
 					.lineLimit(2)
 					.frame(maxWidth: UIScreen.main.bounds.width - 100, alignment: .leading)
-			} //: END OF VSTACK
+			}
+			
 			HStack {
 				Text("Yesterday")
 				Image(systemName: "chevron.right")
-			} //: END OF TIMESTAMP HSTACK
+			}
 			.font(.footnote)
 			.foregroundColor(.gray)
 			
-		} //: END OF HSTACK
+		}
 		.frame(height: 72)
-    } //: END OF BODY VIEW
-	
-	// MARK: - FUNCTIONS
+    }
 }
 
-
-// MARK: - PREVIEWS
 struct InboxRowView_Previews: PreviewProvider {
     static var previews: some View {
         InboxRowView()
