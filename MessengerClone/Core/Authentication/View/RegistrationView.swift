@@ -9,15 +9,15 @@ import SwiftUI
 
 struct RegistrationView: View {
 	
-	// MARK: - PROPERTIES
+	// MARK: - Properties
 	@StateObject var viewModel = RegistrationViewModel()
 	@Environment(\.dismiss) var dismiss
 	
-	// MARK: - BODY
+	
+	// MARK: - View Body
 	var body: some View {
+		
 		VStack {
-			
-			// MARK: - HEADER
 			Spacer()
 			Image("MessengerLogo")
 				.resizable()
@@ -25,7 +25,6 @@ struct RegistrationView: View {
 				.frame(width: 150, height: 150)
 				.padding()
 			
-			// MARK: - CENTER
 			VStack {
 				TextField("Email", text: $viewModel.email)
 					.textInputAutocapitalization(.never)
@@ -38,9 +37,9 @@ struct RegistrationView: View {
 				SecureField("Password", text: $viewModel.password)
 					.textInputAutocapitalization(.never)
 					.modifier(TextFieldModifier())
-			} //: END OF CENTER VSTACK
+			}
 			
-			// LOG IN BUTTON
+			
 			Button {
 				Task { try await viewModel.createUser() }
 			  } label: {
@@ -48,8 +47,10 @@ struct RegistrationView: View {
 					  .modifier(CustomButtonModifier())
 			  }
 			  .padding(.vertical)
+			
 			Spacer()
 			Divider()
+			
 			Button {
 				dismiss()
 			} label: {
@@ -61,11 +62,10 @@ struct RegistrationView: View {
 				.font(.footnote)
 			}
 			.padding(.vertical)
-		} //: END OF BODY VSTACK
+		}
 	}
 }
 
-// MARK: - PREVIEWS
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
         RegistrationView()

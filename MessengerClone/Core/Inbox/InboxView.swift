@@ -9,13 +9,16 @@ import SwiftUI
 
 struct InboxView: View {
 	
-	// MARK: - PROPERTIES
+	// MARK: - Properties
 	@State private var showNewMessageView = false
 	@State private var user = User.mockUser
 	
-	// MARK: - BODY
+	
+	// MARK: - View Body
     var body: some View {
+		
 		NavigationStack {
+			
 			ScrollView {
 				ActiveNowView()
 				
@@ -23,10 +26,10 @@ struct InboxView: View {
 					ForEach(0...7, id: \.self) { message in
 						InboxRowView()
 					}
-				} //: END OF LIST
+				}
 				.listStyle(.plain)
 				.frame(height: UIScreen.main.bounds.height - 120)
-			} //: END OF SCROLLVIEW
+			}
 			.navigationDestination(for: User.self, destination: { user in
 				ProfileView(user: user)
 			})
@@ -44,6 +47,8 @@ struct InboxView: View {
 							.fontWeight(.semibold)
 					}
 				}
+				
+				
 				ToolbarItem(placement: .navigationBarTrailing) {
 					Button {
 						showNewMessageView.toggle()
@@ -53,13 +58,13 @@ struct InboxView: View {
 							.frame(width: 32, height: 32)
 							.foregroundStyle(.black, Color(.systemGray5))
 					}
+					.padding()
 				}
 			}
-		} //: END OF NAVIGATION STACK
-    } //: END OF VIEW BODY
+		}
+    }
 }
 
-// MARK: - PREVIEWS
 struct InboxView_Previews: PreviewProvider {
     static var previews: some View {
         InboxView()

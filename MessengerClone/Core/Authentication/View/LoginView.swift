@@ -9,24 +9,24 @@ import SwiftUI
 
 struct LoginView: View {
 	
-	// MARK: - PROPERTIES
+	// MARK: - Properties
 	@StateObject var viewModel = LoginViewModel()
 	
 	
-	// MARK: - BODY
+	// MARK: - View Body
     var body: some View {
+		
 		NavigationStack {
 			VStack {
 				
-				// MARK: - HEADER
 				Spacer()
+				
 				Image("MessengerLogo")
 					.resizable()
 					.scaledToFit()
 					.frame(width: 150, height: 150)
 					.padding()
 				
-				// MARK: - CENTER
 				VStack {
 					TextField("Email", text: $viewModel.email)
 						.textInputAutocapitalization(.never)
@@ -35,9 +35,8 @@ struct LoginView: View {
 					SecureField("Password", text: $viewModel.password)
 						.textInputAutocapitalization(.never)
 						.modifier(TextFieldModifier())
-				} //: END OF CENTER VSTACK
+				}
 				
-				// FORGOT PASSWORD BUTTON
 				Button {
 					print("DEBUG: Forgot Password...")
 				} label: {
@@ -49,7 +48,6 @@ struct LoginView: View {
 				}
 				.frame(maxWidth: .infinity, alignment: .trailing)
 				
-				// LOG IN BUTTON
 				Button {
 					Task { try await viewModel.login() }
 				} label: {
@@ -58,7 +56,6 @@ struct LoginView: View {
 				}
 				.padding(.vertical)
 				
-				// MARK: - FOOTER
 				// Custom "OR" Divider
 				HStack {
 					Rectangle()
@@ -103,18 +100,16 @@ struct LoginView: View {
 						Text("Don't have an account?")
 						Text("Sign Up")
 							.fontWeight(.semibold)
-					} //: END OF SIGN UP HSTACK
+					}
 					.font(.footnote)
-				} //: END OF NAVIGATION LINK
+				}
 				.padding(.vertical, 16)
-			} //: END OF OUTER VSTACK
-			
-		} //: END OF NAVIGATION STACK
-		
+			}
+		}
     }
 }
 
-// MARK: - PREVIEWS
+// MARK: - Previews
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()

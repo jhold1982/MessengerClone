@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseFirestore
+import FirebaseAuth
 
 class AuthService {
 	
@@ -16,7 +17,7 @@ class AuthService {
 	
 	init() {
 		self.userSession = Auth.auth().currentUser
-		print("DEBUG: USER SESSION ID IS \(userSession?.uid)")
+		print("DEBUG: USER SESSION ID IS \(String(describing: userSession?.uid))")
 	}
 	
 	func login(withEmail email: String, password: String) async throws {
