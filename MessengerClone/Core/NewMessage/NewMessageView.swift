@@ -34,7 +34,6 @@ struct NewMessageView: View {
 				ForEach(0...10, id: \.self) { user in
 					VStack {
 						HStack {
-							
 							CircularProfileImageView(
 								user: User.mockUser,
 								size: .small
@@ -45,14 +44,12 @@ struct NewMessageView: View {
 								.fontWeight(.semibold)
 							
 							Spacer()
-							
 						}
 						.padding(.leading)
 					}
 					
 					Divider()
 						.padding(.leading, 40)
-					
 				}
 			}
 			.navigationTitle("New Message")
@@ -62,7 +59,7 @@ struct NewMessageView: View {
 					Button("Cancel") {
 						dismiss()
 					}
-					.foregroundColor(.black)
+					.tint(.red)
 				}
 			}
 		}

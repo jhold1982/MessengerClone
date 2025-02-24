@@ -38,16 +38,18 @@ struct InboxView: View {
 			})
 			.toolbar {
 				ToolbarItem(placement: .navigationBarLeading) {
+					
 					HStack {
+						
 						NavigationLink(value: user) {
 							CircularProfileImageView(user: user, size: .xSmall)
 						}
+						
 						Text("Chats")
 							.font(.title)
 							.fontWeight(.semibold)
 					}
 				}
-				
 				
 				ToolbarItem(placement: .navigationBarTrailing) {
 					Button {
@@ -56,7 +58,7 @@ struct InboxView: View {
 						Image(systemName: "square.and.pencil.circle.fill")
 							.resizable()
 							.frame(width: 32, height: 32)
-							.foregroundStyle(.black, Color(.systemGray5))
+							.foregroundStyle(.white, Color(.systemBlue))
 					}
 					.padding()
 				}

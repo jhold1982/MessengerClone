@@ -10,17 +10,19 @@ import PhotosUI
 
 struct ProfileView: View {
 	
-	// MARK: - PROPERTIES
+	// MARK: - Properties
 	@StateObject var viewModel = ProfileViewModel()
+	
 	let user: User
 	
-	// MARK: - BODY
+	// MARK: - View Body
     var body: some View {
+		
 		VStack {
-			
-			// MARK: - HEADER
 			VStack {
+				
 				PhotosPicker(selection: $viewModel.selectedItem) {
+					
 					if let profileImage = viewModel.profileImage {
 						profileImage
 							.resizable()
@@ -35,11 +37,12 @@ struct ProfileView: View {
 				Text(user.fullName)
 					.font(.title2)
 					.fontWeight(.semibold)
-			} //: END OF INNER VSTACK
+			}
 			
-			// MARK: - LIST
 			List {
-				Section { 
+				
+				Section {
+					
 					ForEach(SettingsOptionsViewModel.allCases) { option in
 						HStack {
 							Image(systemName: option.imageName)
@@ -50,7 +53,7 @@ struct ProfileView: View {
 								.font(.subheadline)
 						}
 					}
-				} //: END OF TOP SECTION
+				}
 				
 				Section {
 					Button("Log Out") {

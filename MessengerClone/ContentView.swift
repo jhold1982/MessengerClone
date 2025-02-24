@@ -9,14 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
 	
-	// MARK: - PROPERTIES
+	// MARK: - Properties
 	@StateObject var viewModel = ContentViewModel()
 	
 	
-	// MARK: - BODY
+	// MARK: - View Body
     var body: some View {
 		Group {
-			if viewModel.userSession != nil {
+			if $viewModel.userSession != nil {
 				InboxView()
 			} else {
 				LoginView()
@@ -25,7 +25,6 @@ struct ContentView: View {
     }
 }
 
-// MARK: - PREVIEWS
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
