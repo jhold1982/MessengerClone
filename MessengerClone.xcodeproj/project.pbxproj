@@ -13,6 +13,7 @@
 		645571E92A5DBB460050558F /* CircularProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645571E82A5DBB460050558F /* CircularProfileImageView.swift */; };
 		645571EC2A5DC1040050558F /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645571EB2A5DC1040050558F /* ChatView.swift */; };
 		64612D3A2A4F619800F1BB63 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64612D392A4F619800F1BB63 /* RegistrationView.swift */; };
+		647B13DC2D6E72000049D5CF /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 647B13DB2D6E72000049D5CF /* UserService.swift */; };
 		6482C5B82A55D2A300031393 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482C5B72A55D2A300031393 /* ProfileView.swift */; };
 		6482C5BA2A5614F900031393 /* SettingsOptionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482C5B92A5614F900031393 /* SettingsOptionsViewModel.swift */; };
 		6482C5BC2A58785D00031393 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6482C5BB2A58785D00031393 /* ProfileViewModel.swift */; };
@@ -45,6 +46,7 @@
 		645571E82A5DBB460050558F /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
 		645571EB2A5DC1040050558F /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		64612D392A4F619800F1BB63 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		647B13DB2D6E72000049D5CF /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		6482C5B72A55D2A300031393 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6482C5B92A5614F900031393 /* SettingsOptionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOptionsViewModel.swift; sourceTree = "<group>"; };
 		6482C5BB2A58785D00031393 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		64B9BE132A4ADB130023B6D7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				647B13DB2D6E72000049D5CF /* UserService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -340,7 +343,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					64B9BDFD2A4AD9B70023B6D7 = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -393,6 +396,7 @@
 				64B9BE042A4AD9B70023B6D7 /* ContentView.swift in Sources */,
 				642E38EF2A95317100D89852 /* RegistrationViewModel.swift in Sources */,
 				642E38F12A95318C00D89852 /* AuthService.swift in Sources */,
+				647B13DC2D6E72000049D5CF /* UserService.swift in Sources */,
 				645571EC2A5DC1040050558F /* ChatView.swift in Sources */,
 				645571E92A5DBB460050558F /* CircularProfileImageView.swift in Sources */,
 				64E4D6822A94F1EF006969E8 /* ChatBubble.swift in Sources */,
@@ -418,6 +422,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -450,6 +455,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -478,6 +484,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -510,6 +517,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

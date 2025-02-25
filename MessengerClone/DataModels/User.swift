@@ -6,17 +6,64 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
+/// A model representing a user in the application.
+///
+/// This struct conforms to `Codable` for easy serialization to and from Firestore,
+/// `Identifiable` for use in SwiftUI lists and ForEach, and `Hashable` for comparison operations.
+///
+/// ## Overview
+///
+/// The `User` model stores essential information about a user:
+/// - A unique identifier sourced from Firestore
+/// - The user's full name
+/// - The user's email address
+/// - An optional URL to the user's profile image
+///
+/// The model automatically generates an identifier if none is provided from Firestore.
+///
+/// ## Example Usage
+///
+/// ```swift
+/// // Create a user from Firestore data
+/// let user = try documentSnapshot.data(as: User.self)
+///
+/// // Display user in a SwiftUI view
+/// Text(user.fullName)
+/// ```
 struct User: Codable, Identifiable, Hashable {
+	/// The unique identifier for the user, typically from Firestore.
+	///
+	/// This property is marked with @DocumentID to automatically map to the document ID
+	/// when decoded from a Firestore document.
+	@DocumentID var uid: String?
 	
-	var id = NSUUID().uuidString
+	/// The user's full name.
 	let fullName: String
+	
+	/// The user's email address.
 	let email: String
+	
+	/// The URL string pointing to the user's profile image.
+	///
+	/// This is an optional property as a user might not have uploaded a profile image yet.
 	var profileImageURL: String?
+	
+	/// A computed property that satisfies the `Identifiable` protocol.
+	///
+	/// Returns the Firestore document ID if available, otherwise generates a new UUID.
+	var id: String {
+		return uid ?? NSUUID().uuidString
+	}
 }
 
+/// Extension providing test data for the User model.
 extension User {
-	
+	/// A mock user instance for previews and testing.
+	///
+	/// This constant provides a consistent user representation for SwiftUI previews,
+	/// unit tests, and UI development without requiring actual authentication.
 	static let mockUser = User(
 		fullName: "Example Name",
 		email: "example@email.com",
