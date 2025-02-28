@@ -73,7 +73,7 @@ struct CircularProfileImageView: View {
 	// MARK: - Properties
 	
 	/// The user whose profile image should be displayed
-	let user: User
+	var user: User?
 	
 	/// The size of the profile image, using the `ProfileImageSize` enum
 	let size: ProfileImageSize
@@ -87,7 +87,7 @@ struct CircularProfileImageView: View {
 	 Otherwise, it shows a system-provided person icon as a fallback.
 	 */
 	var body: some View {
-		if let imageURL = user.profileImageURL {
+		if let imageURL = user?.profileImageURL {
 			Image(imageURL)
 				.resizable()
 				.scaledToFill()

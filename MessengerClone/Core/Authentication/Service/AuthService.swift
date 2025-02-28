@@ -61,7 +61,7 @@ class AuthService {
 	/// if a user was previously logged in and their session is still valid.
 	init() {
 		self.userSession = Auth.auth().currentUser
-		Task { try await UserService.shared.fetchCurrentUser() }
+		loadCurrentUserData()
 		print("DEBUG: USER SESSION ID IS \(String(describing: userSession?.uid))")
 	}
 	
@@ -80,6 +80,7 @@ class AuthService {
 		do {
 			let result = try await Auth.auth().signIn(withEmail: email, password: password)
 			self.userSession = result.user
+			loadCurrentUserData()
 		} catch {
 			print("DEBUG: FAILED TO LOG USER IN WITH ERROR: \(error.localizedDescription)")
 		}
@@ -103,6 +104,7 @@ class AuthService {
 			let result = try await Auth.auth().createUser(withEmail: email, password: password)
 			self.userSession = result.user
 			try await self.uploadUserData(email: email, fullName: fullName, id: result.user.uid)
+			loadCurrentUserData()
 		} catch {
 			print("DEBUG: FAILED TO CREATE USER WITH ERROR: \(error.localizedDescription)")
 		}
@@ -117,6 +119,7 @@ class AuthService {
 		do {
 			try Auth.auth().signOut()
 			self.userSession = nil
+			UserService.shared.currentUser = nil
 		} catch {
 			print("DEBUG: FAILED TO LOG USER OUT. \(error.localizedDescription)")
 		}
@@ -147,6 +150,10 @@ class AuthService {
 		}
 		
 		try await Firestore.firestore().collection("users").document(id).setData(encodedUser)
+	}
+	
+	private func loadCurrentUserData() {
+		Task { try await UserService.shared.fetchCurrentUser() }
 	}
 }
 
