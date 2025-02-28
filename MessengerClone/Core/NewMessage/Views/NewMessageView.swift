@@ -11,6 +11,7 @@ struct NewMessageView: View {
 	
 	// MARK: - Properties
 	@State private var searchText = ""
+	@StateObject var viewModel = NewMessageViewViewModel()
 	@Environment(\.dismiss) var dismiss
 	
 	
@@ -31,15 +32,15 @@ struct NewMessageView: View {
 					.frame(maxWidth: .infinity, alignment: .leading)
 					.padding()
 				
-				ForEach(0...10, id: \.self) { user in
+				ForEach(viewModel.users) { user in
 					VStack {
 						HStack {
 							CircularProfileImageView(
-								user: User.mockUser,
+								user: user,
 								size: .small
 							)
 							
-							Text("firstName")
+							Text(user.fullName)
 								.font(.subheadline)
 								.fontWeight(.semibold)
 							

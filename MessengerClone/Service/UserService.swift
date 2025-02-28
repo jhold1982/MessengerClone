@@ -10,32 +10,13 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-/// A service class responsible for managing user data.
-///
-/// This class provides functionality to fetch and maintain information about the currently
-/// authenticated user from Firestore.
-///
-/// ## Overview
-///
-/// `UserService` is implemented as a singleton to ensure consistent user data throughout
-/// the application. It works in conjunction with Firebase Authentication and Firestore
-/// to retrieve the current user's profile information.
-///
-/// ## Example Usage
-///
-/// ```swift
-/// // Fetch the current user's profile
-/// Task {
-///     do {
-///         try await UserService.shared.fetchCurrentUser()
-///         if let user = UserService.shared.currentUser {
-///             print("Current user: \(user.fullName)")
-///         }
-///     } catch {
-///         print("Failed to fetch user: \(error)")
-///     }
-/// }
-/// ```
+/**
+ A service class that manages user data and operations.
+ 
+ `UserService` provides functionality for accessing and managing user data
+ throughout the application. It includes methods for fetching the current user's
+ profile information and retrieving all users from the Firestore database.
+ */
 class UserService {
 	
 	/// The current user's profile information.
@@ -50,13 +31,32 @@ class UserService {
 	/// Use this property to access user data functionality throughout the app.
 	static let shared = UserService()
 	
-	/// Fetches the current user's profile information from Firestore.
-	///
-	/// This method retrieves the user document from Firestore based on the current
-	/// Firebase Authentication user ID. If successful, it updates the `currentUser`
-	/// property with the fetched user data.
-	///
-	/// - Throws: An error if fetching the user data fails or if no user is currently authenticated.
+	/**
+	 Fetches the current user's profile information from Firestore.
+	 
+	 This method retrieves the user document from Firestore based on the current
+	 Firebase Authentication user ID. If successful, it updates the `currentUser`
+	 property with the fetched user data.
+	 
+	 - Throws: `FirestoreError` if there's an issue connecting to Firestore or retrieving the document.
+			  May also throw deserialization errors if the document structure is unexpected.
+			  No error is thrown if no user is currently authenticated.
+	 
+	 - Note: This method silently returns without error if no user is authenticated.
+			Check `Auth.auth().currentUser` before calling if authentication state is uncertain.
+	 
+	 ### Example
+	 ```
+	 do {
+		 try await UserService.shared.fetchCurrentUser()
+		 if let user = UserService.shared.currentUser {
+			 print("Fetched user: \(user.username)")
+		 }
+	 } catch {
+		 print("Failed to fetch current user: \(error)")
+	 }
+	 ```
+	 */
 	func fetchCurrentUser() async throws {
 		
 		guard let uid = Auth.auth().currentUser?.uid else {
@@ -68,5 +68,35 @@ class UserService {
 		
 		self.currentUser = user
 		print("DEBUG: The currently logged in user is \(currentUser ?? User.mockUser)")
+	}
+	
+	/**
+	 Fetches all users from the Firestore database.
+	 
+	 This function retrieves all user documents from the "users" collection in Firestore
+	 and converts them to local `User` model objects. Documents that cannot be decoded
+	 into `User` objects will be silently skipped.
+	 
+	 - Returns: An array of `User` objects representing all valid user documents in the database.
+	 
+	 - Throws: `FirestoreError` if there's an issue connecting to Firestore or retrieving documents.
+			  May also throw deserialization errors if the document structure is unexpected.
+	 
+	 - Warning: This operation performs a full collection read, which may have performance and
+			   billing implications for large collections. Consider pagination for production use.
+	 
+	 ### Example
+	 ```
+	 do {
+		 let allUsers = try await UserService.fetchAllUsers()
+		 print("Fetched \(allUsers.count) users")
+	 } catch {
+		 print("Failed to fetch users: \(error)")
+	 }
+	 ```
+	 */
+	static func fetchAllUsers() async throws -> [User] {
+		let snapshot = try await Firestore.firestore().collection("users").getDocuments()
+		return snapshot.documents.compactMap { try? $0.data(as: User.self) }
 	}
 }
