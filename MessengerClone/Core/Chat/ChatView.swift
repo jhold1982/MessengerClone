@@ -30,6 +30,7 @@ struct ChatView: View {
 	/// State variable to hold the current text being composed by the user
 	@State private var messageText = ""
 	
+	let user: User
 	
 	// MARK: - View Body
 	/**
@@ -52,7 +53,7 @@ struct ChatView: View {
 					 This uses a mock user for demonstration purposes and shows the image at extra large size.
 					 In a production app, you would pass the actual conversation participant.
 					 */
-					CircularProfileImageView(user: User.mockUser, size: .xLarge)
+					CircularProfileImageView(user: user, size: .xLarge)
 					
 					// User information display
 					VStack(spacing: 4) {
@@ -62,7 +63,7 @@ struct ChatView: View {
 						 Note: Currently using a placeholder "userName" string.
 						 This should be replaced with the actual user's name in production.
 						 */
-						Text("userName")
+						Text(user.fullName)
 							.font(.title3)
 							.fontWeight(.semibold)
 						
@@ -137,6 +138,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+		ChatView(user: User.mockUser)
     }
 }
