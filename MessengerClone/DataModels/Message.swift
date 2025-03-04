@@ -27,7 +27,7 @@ struct Message: Identifiable, Codable, Hashable {
 	let toID: String
 	
 	/// The text content of the message.
-	let messsageText: String
+	let messageText: String
 	
 	/// The timestamp of when the message was sent.
 	let timestamp: Timestamp
