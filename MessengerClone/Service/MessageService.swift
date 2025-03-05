@@ -21,7 +21,7 @@ struct MessageService {
 	///
 	/// The collection path is set to "messages" and serves as the root collection
 	/// for all message-related document storage.
-	private let messagesCollection = Firestore.firestore().collection("messages")
+	static let messagesCollection = Firestore.firestore().collection("messages")
 	
 	/// Sends a message from the current user to a specified recipient.
 	///
@@ -38,7 +38,7 @@ struct MessageService {
 	///           if message encoding fails.
 	///
 	/// - SeeAlso: `Message` struct for message data model
-	func sendMessage(_ messageText: String, toUser user: User) {
+	static func sendMessage(_ messageText: String, toUser user: User) {
 		// Authenticate and validate current user
 		guard let currentUID = Auth.auth().currentUser?.uid else { return }
 		

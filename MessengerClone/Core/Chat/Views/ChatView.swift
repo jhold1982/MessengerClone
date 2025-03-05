@@ -27,10 +27,15 @@ import SwiftUI
 struct ChatView: View {
 	
 	// MARK: - Properties
-	/// State variable to hold the current text being composed by the user
-	@State private var messageText = ""
+	
+	@StateObject var viewModel: ChatViewViewModel
 	
 	let user: User
+	
+	init(user: User) {
+		self.user = user
+		self._viewModel = StateObject(wrappedValue: ChatViewViewModel(user: user))
+	}
 	
 	// MARK: - View Body
 	/**
@@ -110,7 +115,7 @@ struct ChatView: View {
 				 This field expands vertically to accommodate multi-line messages,
 				 with styling to make it appear as a chat input bubble.
 				 */
-				TextField("Message...", text: $messageText, axis: .vertical)
+				TextField("Message...", text: $viewModel.messageText, axis: .vertical)
 					.padding(12)
 					.padding(.trailing, 48)
 					.background(Color(.systemGroupedBackground))
@@ -124,7 +129,8 @@ struct ChatView: View {
 				 In a production app, this would call a method to process and send the message.
 				 */
 				Button {
-					print("DEBUG: SEND MESSAGE...")
+					viewModel.sendMessage()
+					viewModel.messageText = ""
 				} label: {
 					Text("Send")
 						.fontWeight(.semibold)
