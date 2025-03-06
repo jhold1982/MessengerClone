@@ -36,10 +36,11 @@ struct ChatMessageCell: View {
 	
 	// MARK: - Properties
 	
-	/// Determines the appearance and alignment of the message.
-	/// - `true`: Message appears on the right side with blue background (sent by current user)
-	/// - `false`: Message appears on the left side with gray background and profile image (received from another user)
-	let isFromCurrentUser: Bool
+	let message: Message
+	
+	private var isFromCurrentUser: Bool {
+		return message.isFromCurrentUser
+	}
 	
 	// MARK: - View Body
 	
@@ -55,9 +56,9 @@ struct ChatMessageCell: View {
 	 */
 	var body: some View {
 		HStack {
-			if isFromCurrentUser {
+			if message.isFromCurrentUser {
 				Spacer() // Moves chat to right side of screen
-				Text("This is a test message for now asdf asfd")
+				Text(message.messageText)
 					.font(.subheadline)
 					.padding(12)
 					.background(Color(.systemBlue))
@@ -77,7 +78,7 @@ struct ChatMessageCell: View {
 					 */
 					CircularProfileImageView(user: User.mockUser, size: .xxSmall)
 					
-					Text("This is a test message for now asdf asdf asdfasdf asdfasdfasdf")
+					Text(message.messageText)
 						.font(.subheadline)
 						.padding()
 						.background(Color(.systemGray5))
@@ -101,8 +102,8 @@ struct ChatMessageCell: View {
  This preview shows how a message from another user would appear in the Xcode canvas.
  You can modify the `isFromCurrentUser` parameter to preview both message types.
  */
-struct ChatMessageCell_Previews: PreviewProvider {
-	static var previews: some View {
-		ChatMessageCell(isFromCurrentUser: false)
-	}
-}
+//struct ChatMessageCell_Previews: PreviewProvider {
+//	static var previews: some View {
+//		ChatMessageCell(isFromCurrentUser: false)
+//	}
+//}

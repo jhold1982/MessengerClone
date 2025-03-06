@@ -9,17 +9,26 @@ import Foundation
 import Firebase
 import FirebaseFirestore
 
+@MainActor
 class ChatViewViewModel: ObservableObject {
 	
 	@Published var messageText: String = ""
+	@Published var messages = [Message]()
 	
-	let user: User
+	let service: ChatService
 	
 	init(user: User) {
-		self.user = user
+		self.service = ChatService(chatPartner: user)
+		observeMessages()
 	}
 	
 	func sendMessage() {
-		
+		service.sendMessage(messageText)
+	}
+	
+	func observeMessages() {
+		service.observeMessages() { message in
+			self.messages.append(contentsOf: self.messages)
+		}
 	}
 }

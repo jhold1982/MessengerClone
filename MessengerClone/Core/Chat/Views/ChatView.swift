@@ -28,12 +28,17 @@ struct ChatView: View {
 	
 	// MARK: - Properties
 	
+	/// View model that manages the chat functionality and state
 	@StateObject var viewModel: ChatViewViewModel
-	
+
+	/// The user that the current user is chatting with
 	let user: User
-	
+
+	/// Initializes a new chat view with the specified user
+	/// - Parameter user: The user to chat with
 	init(user: User) {
 		self.user = user
+		// Initialize the view model with the chat partner user
 		self._viewModel = StateObject(wrappedValue: ChatViewViewModel(user: user))
 	}
 	
@@ -88,14 +93,14 @@ struct ChatView: View {
 				 In a production app, this would be replaced with actual message data from a model,
 				 likely using a more sophisticated data structure than a simple integer range.
 				 */
-				ForEach(0...15, id: \.self) { message in
+				ForEach(viewModel.messages) { message in
 					/**
 					 Creates individual message cells with randomly assigned sender status.
 					 
 					 Note: The random assignment is for demonstration purposes only.
 					 In a production app, each message would have a proper sender identifier.
 					 */
-					ChatMessageCell(isFromCurrentUser: Bool.random())
+					ChatMessageCell(message: message)
 				}
 			}
 			
