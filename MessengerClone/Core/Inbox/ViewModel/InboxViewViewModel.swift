@@ -50,12 +50,17 @@ class InboxViewViewModel: ObservableObject {
 	/// When this property changes, any views observing this view model will be updated.
 	@Published var currentUser: User?
 	
+	@Published var recentMessages = [Message]()
+	
 	/// A set of cancellables to store active subscribers.
 	private var cancellables = Set<AnyCancellable>()
+	
+	private let service = InboxService()
 	
 	/// Initializes a new inbox view model and sets up subscribers.
 	init() {
 		setupSubscribers()
+		service.observeRecentMessages()
 	}
 	
 	/// Sets up subscribers to external data sources.
@@ -72,5 +77,37 @@ class InboxViewViewModel: ObservableObject {
 				self?.currentUser = user
 			}
 		}.store(in: &cancellables)
+		
+		service.$documentChanges.sink { [weak self] changes in
+			self?.loadInitialMessages(fromChanges: changes)
+		}.store(in: &cancellables)
+	}
+	
+	/**
+	 Processes document changes to load initial messages and their associated user data.
+	 
+	 This method takes an array of Firestore document changes, converts them to Message objects,
+	 and then fetches the user information for each message's chat partner before adding
+	 the complete message to the recentMessages array.
+	 
+	 - Parameter fromChanges: An array of DocumentChanges containing message data
+	 */
+	private func loadInitialMessages(fromChanges changes: [DocumentChange]) {
+		// Convert Firestore documents to Message objects, filtering out any that fail to decode
+		var messages = changes.compactMap({ try? $0.document.data(as: Message.self) })
+		
+		// Iterate through each message to fetch the associated user data
+		for i in 0..<messages.count {
+			let message = messages[i]
+			
+			// Fetch user data for the chat partner in this message
+			UserService.fetchUser(withUID: message.chatPartnerID) { user in
+				// Assign the fetched user to the message
+				messages[i].user = user
+				
+				// Add the complete message (with user data) to the recentMessages array
+				self.recentMessages.append(messages[i])
+			}
+		}
 	}
 }
