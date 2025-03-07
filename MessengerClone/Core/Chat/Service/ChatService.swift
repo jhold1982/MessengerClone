@@ -38,6 +38,9 @@ struct ChatService {
 		let currentUserRef = FirestoreConstants.messagesCollection.document(currentUID).collection(chatPartnerID).document()
 		let chatPartnerRef = FirestoreConstants.messagesCollection.document(chatPartnerID).collection(currentUID)
 		
+		let recentCurrentUserRef = FirestoreConstants.messagesCollection.document(currentUID).collection("recent-messages").document(chatPartnerID)
+		let recentPartnerRef = FirestoreConstants.messagesCollection.document(chatPartnerID).collection("recent-messages").document(currentUID)
+		
 		// Generate a unique message ID
 		let messageID = currentUserRef.documentID
 		
@@ -58,6 +61,9 @@ struct ChatService {
 		
 		// Store message for chat partner
 		chatPartnerRef.document(messageID).setData(messageData)
+		
+		recentCurrentUserRef.setData(messageData)
+		recentPartnerRef.setData(messageData)
 	}
 	
 	/// Observes and retrieves messages for a specific chat partner in real-time.
