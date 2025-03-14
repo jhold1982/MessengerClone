@@ -31,7 +31,13 @@ struct InboxView: View {
 				
 				List {
 					ForEach(viewModel.recentMessages) { message in
-						InboxRowView(message: message)
+						ZStack {
+							NavigationLink(value: message) {
+								EmptyView()
+							}.opacity(0.0)
+							
+							InboxRowView(message: message)
+						}
 					}
 				}
 				.listStyle(.plain)
@@ -39,6 +45,11 @@ struct InboxView: View {
 			}
 			.onChange(of: selectedUser, perform: { newValue in
 				showChat = newValue != nil
+			})
+			.navigationDestination(for: Message.self, destination: { message in
+				if let user = message.user {
+					ChatView(user: user)
+				}
 			})
 			.navigationDestination(for: User.self, destination: { user in
 				ProfileView(user: user)
