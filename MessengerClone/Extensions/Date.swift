@@ -62,7 +62,7 @@ extension Date {
 	 *
 	 * @return String representing the formatted timestamp appropriate to the date's context
 	 */
-	func timeStringStamp() -> String {
+	func timeStampString() -> String {
 		if Calendar.current.isDateInToday(self) {
 			return timeString()
 		} else if Calendar.current.isDateInYesterday(self) {

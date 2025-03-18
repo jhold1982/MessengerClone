@@ -59,6 +59,10 @@ struct Message: Identifiable, Codable, Hashable {
 		return fromID == Auth.auth().currentUser?.uid
 	}
 	
+	var timeStampString: String {
+		return timestamp.dateValue().timeStampString()
+	}
+	
 //	/// Coding keys for Codable conformance.
 //	///
 //	/// Allows for custom encoding and decoding of the Message struct.
