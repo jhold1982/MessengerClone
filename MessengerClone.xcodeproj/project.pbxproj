@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -35,7 +35,6 @@
 		64B9BE222A4ADF3A0023B6D7 /* CustomButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9BE212A4ADF3A0023B6D7 /* CustomButtonModifier.swift */; };
 		64D0802E2D78F51F0060EEBC /* ChatViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D0802D2D78F51F0060EEBC /* ChatViewViewModel.swift */; };
 		64DC3F3B2A53291400FA6DA1 /* InboxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F3A2A53291400FA6DA1 /* InboxView.swift */; };
-		64DC3F3E2A5329FC00FA6DA1 /* ActiveNowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F3D2A5329FC00FA6DA1 /* ActiveNowView.swift */; };
 		64DC3F402A534A9900FA6DA1 /* InboxRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F3F2A534A9900FA6DA1 /* InboxRowView.swift */; };
 		64DC3F432A536D0C00FA6DA1 /* NewMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DC3F422A536D0C00FA6DA1 /* NewMessageView.swift */; };
 		64E4D6802A94EE1A006969E8 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64E4D67F2A94EE1A006969E8 /* ChatMessageCell.swift */; };
@@ -78,7 +77,6 @@
 		64B9BE212A4ADF3A0023B6D7 /* CustomButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonModifier.swift; sourceTree = "<group>"; };
 		64D0802D2D78F51F0060EEBC /* ChatViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewViewModel.swift; sourceTree = "<group>"; };
 		64DC3F3A2A53291400FA6DA1 /* InboxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxView.swift; sourceTree = "<group>"; };
-		64DC3F3D2A5329FC00FA6DA1 /* ActiveNowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveNowView.swift; sourceTree = "<group>"; };
 		64DC3F3F2A534A9900FA6DA1 /* InboxRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxRowView.swift; sourceTree = "<group>"; };
 		64DC3F422A536D0C00FA6DA1 /* NewMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageView.swift; sourceTree = "<group>"; };
 		64E4D67F2A94EE1A006969E8 /* ChatMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
@@ -86,6 +84,11 @@
 		64E4D6832A9520C9006969E8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		64E665752A9A92B300E41D4D /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		6425E0752D8B273800D35089 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
+		6425E0762D8B273E00D35089 /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		64B9BDFB2A4AD9B70023B6D7 /* Frameworks */ = {
@@ -386,7 +389,8 @@
 		64DC3F3C2A5329EC00FA6DA1 /* ActiveNow */ = {
 			isa = PBXGroup;
 			children = (
-				64DC3F3D2A5329FC00FA6DA1 /* ActiveNowView.swift */,
+				6425E0762D8B273E00D35089 /* ViewModel */,
+				6425E0752D8B273800D35089 /* View */,
 			);
 			path = ActiveNow;
 			sourceTree = "<group>";
@@ -422,6 +426,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				6425E0752D8B273800D35089 /* View */,
+				6425E0762D8B273E00D35089 /* ViewModel */,
 			);
 			name = MessengerClone;
 			packageProductDependencies = (
@@ -489,7 +497,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				64B9BE1A2A4ADB580023B6D7 /* LoginView.swift in Sources */,
-				64DC3F3E2A5329FC00FA6DA1 /* ActiveNowView.swift in Sources */,
 				64E4D6802A94EE1A006969E8 /* ChatMessageCell.swift in Sources */,
 				6484391C2D89F1E800FA1B22 /* Date.swift in Sources */,
 				6482C5BA2A5614F900031393 /* SettingsOptionsViewModel.swift in Sources */,
