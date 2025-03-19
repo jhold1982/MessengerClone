@@ -93,14 +93,16 @@ struct ChatView: View {
 				 In a production app, this would be replaced with actual message data from a model,
 				 likely using a more sophisticated data structure than a simple integer range.
 				 */
-				ForEach(viewModel.messages) { message in
-					/**
-					 Creates individual message cells with randomly assigned sender status.
-					 
-					 Note: The random assignment is for demonstration purposes only.
-					 In a production app, each message would have a proper sender identifier.
-					 */
-					ChatMessageCell(message: message)
+				LazyVStack {
+					ForEach(viewModel.messages) { message in
+						/**
+						 Creates individual message cells with randomly assigned sender status.
+						 
+						 Note: The random assignment is for demonstration purposes only.
+						 In a production app, each message would have a proper sender identifier.
+						 */
+						ChatMessageCell(message: message)
+					}
 				}
 			}
 			
@@ -144,6 +146,8 @@ struct ChatView: View {
 			}
 			.padding()
 		}
+		.navigationTitle(user.fullName)
+		.navigationBarTitleDisplayMode(.inline)
 	}
 }
 

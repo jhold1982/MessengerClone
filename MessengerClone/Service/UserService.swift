@@ -71,39 +71,52 @@ class UserService {
 	}
 	
 	/**
-	 Fetches all users from the Firestore database.
-	 
-	 This function retrieves all user documents from the "users" collection in Firestore
-	 and converts them to local `User` model objects. Documents that cannot be decoded
-	 into `User` objects will be silently skipped.
-	 
-	 - Returns: An array of `User` objects representing all valid user documents in the database.
-	 
-	 - Throws: `FirestoreError` if there's an issue connecting to Firestore or retrieving documents.
-			  May also throw deserialization errors if the document structure is unexpected.
-	 
-	 - Warning: This operation performs a full collection read, which may have performance and
-			   billing implications for large collections. Consider pagination for production use.
-	 
-	 ### Example
-	 ```
-	 do {
-		 let allUsers = try await UserService.fetchAllUsers()
-		 print("Fetched \(allUsers.count) users")
-	 } catch {
-		 print("Failed to fetch users: \(error)")
-	 }
-	 ```
+	 * Fetches all users from Firestore with an optional limit.
+	 *
+	 * This static method retrieves user documents from the Firestore users collection
+	 * and converts them to User objects. It supports limiting the number of results returned.
+	 *
+	 * - Parameter limit: Optional parameter to limit the number of users fetched.
+	 *                   If nil, all users will be fetched.
+	 *
+	 * - Returns: An array of User objects.
+	 *
+	 * - Throws: FirestoreError if there's an issue with the Firestore query,
+	 *           or any decoding errors when converting documents to User objects.
 	 */
-	static func fetchAllUsers() async throws -> [User] {
-		let snapshot = try await Firestore.firestore().collection("users").getDocuments()
+	static func fetchAllUsers(limit: Int? = nil) async throws -> [User] {
+		// Create a query reference from the user collection
+		let query = FirestoreConstants.userCollection
+		
+		// Apply limit if provided
+		if let limit {
+			query.limit(to: limit)
+		}
+		
+		// Execute the query and get documents
+		let snapshot = try await query.getDocuments()
+		
+		// Transform the snapshot documents into User objects
 		return snapshot.documents.compactMap { try? $0.data(as: User.self) }
 	}
-	
+
+	/**
+	 * Fetches a single user by their unique identifier.
+	 *
+	 * This static method retrieves a specific user document from Firestore based on
+	 * the provided user ID and returns it via a completion handler.
+	 *
+	 * - Parameters:
+	 *   - withUID: The unique identifier of the user to fetch.
+	 *   - completion: A closure that will be called with the User object when the fetch completes.
+	 *                 This closure will not be called if the document doesn't exist or
+	 *                 cannot be decoded as a User.
+	 *
+	 * - Note: This method uses a completion handler pattern instead of async/await.
+	 *         It silently fails if the user cannot be found or decoded.
+	 */
 	static func fetchUser(withUID uid: String, completion: @escaping(User) -> Void) {
-		
 		FirestoreConstants.userCollection.document(uid).getDocument { snapshot, _ in
-			
 			guard let user = try? snapshot?.data(as: User.self) else { return }
 			completion(user)
 		}

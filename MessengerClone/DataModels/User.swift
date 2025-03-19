@@ -56,6 +56,30 @@ struct User: Codable, Identifiable, Hashable {
 	var id: String {
 		return uid ?? NSUUID().uuidString
 	}
+	
+	/**
+	 * A computed property that extracts the first name from a full name string.
+	 *
+	 * This property uses PersonNameComponentsFormatter to intelligently parse
+	 * the stored fullName into components and extract just the given name (first name).
+	 * If parsing fails or the given name component is not available, it falls back to
+	 * returning the entire fullName.
+	 *
+	 * - Returns: The first name extracted from fullName, or the entire fullName if extraction fails.
+	 *
+	 * - Note: This property relies on PersonNameComponentsFormatter, which uses natural language
+	 *         processing to handle various name formats across different cultures and languages.
+	 */
+	var firstName: String {
+		// Create a name formatter to parse the full name
+		let formatter = PersonNameComponentsFormatter()
+		
+		// Attempt to parse the fullName into components
+		let components = formatter.personNameComponents(from: fullName)
+		
+		// Extract the given name (first name) or fall back to the full name if parsing fails
+		return components?.givenName ?? fullName
+	}
 }
 
 /// Extension providing test data for the User model.

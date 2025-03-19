@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Firebase
+import FirebaseAuth
 
 /**
  * ActiveNowViewViewModel
@@ -35,8 +37,12 @@ class ActiveNowViewViewModel: ObservableObject {
 	 *
 	 * - Throws: Any error that might occur during the fetch operation
 	 */
+	@MainActor
 	private func fetchAllUsers() async throws {
-		self.users = try await UserService.fetchAllUsers()
+		guard let currentUID = Auth.auth().currentUser?.uid else { return }
+		/// Retrieves all users and filters out the currently authenticated user.
+		let users = try await UserService.fetchAllUsers(limit: 10)
+		self.users = users.filter { $0.id != currentUID }
 	}
 }
 
